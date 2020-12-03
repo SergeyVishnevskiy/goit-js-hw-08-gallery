@@ -50,22 +50,17 @@ function openModal(largeImageURL, imageRef) {
 }
 function closeModal() {
   refs.modal.classList.remove("is-open");
-  window.addEventListener("keydown", closeByEsc);
+  refs.modalImage.src = "";
+  refs.modalImage.alt = "";
 }
 function onButtonClick() {
   closeModal();
-  refs.modalImage.src = "";
-  refs.modalImage.alt = "";
 }
 function onBackdropClick() {
   closeModal();
-  refs.modalImage.src = "";
-  refs.modalImage.alt = "";
 }
 function closeByEsc(event) {
   if (event.code === "Escape") {
     closeModal();
-    refs.modalImage.src = "";
-    refs.modalImage.alt = "";
   }
 }
