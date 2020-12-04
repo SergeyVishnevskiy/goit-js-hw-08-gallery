@@ -10,8 +10,6 @@ const refs = {
 
 refs.gallery.insertAdjacentHTML("afterbegin", createGallery(images));
 refs.gallery.addEventListener("click", onGallaryClick);
-refs.closeButton.addEventListener("click", onButtonClick);
-refs.backdrop.addEventListener("click", onBackdropClick);
 
 function createGallery(images) {
   const createImages = images.reduce(
@@ -47,11 +45,16 @@ function openModal(largeImageURL, imageRef) {
   refs.modalImage.alt = imageRef;
   refs.modalImage.dataset.index = imageRef.dataset.index;
   window.addEventListener("keydown", closeByEsc);
+  refs.closeButton.addEventListener("click", onButtonClick);
+  refs.backdrop.addEventListener("click", onBackdropClick);
 }
 function closeModal() {
   refs.modal.classList.remove("is-open");
   refs.modalImage.src = "";
   refs.modalImage.alt = "";
+  window.removeEventListener("keydown", closeByEsc);
+  refs.closeButton.removeEventListener("click", onButtonClick);
+  refs.backdrop.removeEventListener("click", onBackdropClick);
 }
 function onButtonClick() {
   closeModal();
